@@ -47,14 +47,14 @@ public class DssatControllerTest {
     }
 
     @Test
-    @Ignore
+    //@Ignore
     public void test() throws IOException, Exception {
         HashMap result;
         Calendar cal;
         String outPath;
         File outDir;
         ArrayList<File> files;
-        result = obDssatControllerInput.readFile(resource.getPath());
+        /*result = obDssatControllerInput.readFile(resource.getPath());
 //        BufferedOutputStream bo;
 //        File f = new File("output\\" + fileName.replaceAll("[Xx]*\\.\\w+$", ".json"));
 //        bo = new BufferedOutputStream(new FileOutputStream(f));
@@ -76,12 +76,16 @@ public class DssatControllerTest {
         obDssatControllerOutput.createZip();
         System.out.println("Generated: " + obDssatControllerOutput.getOutputZipFile().getPath());
         obDssatControllerOutput.getOutputZipFile().delete();
-        outDir.delete();
+        outDir.delete();*/
 
-        String jsonStr;
+        String jsonStr = "";
         InputStream is = this.getClass().getClassLoader().getResourceAsStream("Machakos_1Exp-1Yr.json");
         BufferedReader br = new BufferedReader(new InputStreamReader(is));
-        jsonStr = br.readLine();
+        //jsonStr = br.readLine();
+        String l = null;
+        while ((l = br.readLine()) != null) {
+          jsonStr += l;
+        }
         cal = Calendar.getInstance();
         outPath = "output\\AGMIP_DSSAT_" + cal.getTimeInMillis();
         obDssatControllerOutput = new DssatControllerOutput();
@@ -93,11 +97,11 @@ public class DssatControllerTest {
         }
         obDssatControllerOutput.createZip();
         System.out.println("Generated: " + obDssatControllerOutput.getOutputZipFile().getName());
-        obDssatControllerOutput.getOutputZipFile().delete();
-        outDir.delete();
-        
+        //obDssatControllerOutput.getOutputZipFile().delete();
+        //outDir.delete();
+
         // Test for CRAFT
-        result = obDssatControllerInput.readFileFromCRAFT(resource2.getPath());
+  //      result = obDssatControllerInput.readFileFromCRAFT(resource2.getPath());
 //        f = new File("output/CRAFT.json");
 //        bo = new BufferedOutputStream(new FileOutputStream(f));
 //
@@ -105,8 +109,8 @@ public class DssatControllerTest {
 //        bo.write(JSONAdapter.toJSON(result).getBytes());
 //        bo.close();
 //        f.delete();
-        
-        cal = Calendar.getInstance();
+
+  /*      cal = Calendar.getInstance();
         outPath = "output\\AGMIP_DSSAT_" + cal.getTimeInMillis();
         obDssatControllerOutput = new DssatControllerOutput();
         obDssatControllerOutput.writeFile(outPath, result);
@@ -116,6 +120,6 @@ public class DssatControllerTest {
             System.out.println("Generated: " + file.getName());
             file.delete();
         }
-        outDir.delete();
+        outDir.delete();*/
     }
 }
